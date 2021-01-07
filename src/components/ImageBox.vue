@@ -1,5 +1,9 @@
 <template>
-  <div class="container image-box"></div>
+  <div class="image-box">
+    <div class="container">
+      <div class="image"></div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -23,13 +27,22 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.image-box {
-  --gap-top: var(--unit-5);
-  --gap-bottom: 100px;
+@import '../styles/mixins';
 
-  background-color: var(--color-grey-0);
-  position: relative;
-  top: var(--gap-top);
-  height: calc(100vh - (var(--gap-top) + var(--gap-bottom)));
+.image-box {
+  height: 100%;
+  padding: 0 var(--unit-3);
+  padding-bottom: var(--unit-6);
+  display: flex;
+
+  @include onDesktop {
+    padding-bottom: 100px;
+  }
+
+  .image {
+    background-color: var(--color-grey-0);
+    height: 100%;
+    width: 100%;
+  }
 }
 </style>

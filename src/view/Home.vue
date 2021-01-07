@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <div></div>
     <ImageBox />
   </div>
 </template>
@@ -17,9 +18,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import '../styles/mixins';
+
 .home {
+  --controls-height: 80px;
+
   min-height: inherit;
   background-color: var(--color-white);
-  padding: 0 var(--unit-2);
+  display: grid;
+  grid-template-rows: var(--controls-height) auto;
+
+  @include onDesktop {
+    --controls-height: 100px;
+  }
 }
 </style>
