@@ -2,6 +2,9 @@
   --color-white: #fff;
   --color-grey-0: #e8e8e8;
 
+  --color-bg-white: var(--color-white);
+  --color-bg-grey-0: var(--color-grey-0);
+
   --unit-1\4: 2px;
   --unit-1\2: 4px;
   --unit-1: 8px;
@@ -22,4 +25,8 @@
 }
 
 .dark {
+  --color-white: #000;
+
+  --color-bg-white: #111115;
+  --color-bg-grey-0: #353535;
 }

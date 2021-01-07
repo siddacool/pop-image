@@ -24,7 +24,7 @@ export default defineComponent({
   --controls-height: 80px;
 
   min-height: inherit;
-  background-color: var(--color-white);
+  background-color: var(--color-bg-white);
   display: grid;
   grid-template-rows: var(--controls-height) auto;
 
