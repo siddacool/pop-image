@@ -1,26 +1,36 @@
 <template>
   <div class="image-box">
     <div class="container">
-      <div class="image"></div>
+      <div class="image" :class="!image || isImageFetching ? 'blank' : ''">
+        <div
+          class="img"
+          :style="`background-image: url(${image})`"
+          v-if="image"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
+import { getImage, isImageFetching } from '../store/getters';
 
 export default defineComponent({
   name: 'Image',
   setup() {
     const store = useStore();
-    const msg = ref('Vite + Vue 3 + TypeScript + Tailwind 2 Boilerplate');
 
-    console.log(store);
+    console.log(store.state);
+
+    onMounted(() => {
+      store.dispatch('fetchImage');
+    });
 
     return {
-      msg,
-      count: computed(() => store.state.count),
+      image: computed(() => getImage(store)),
+      isImageFetching: computed(() => isImageFetching(store)),
     };
   },
 });
@@ -40,9 +50,21 @@ export default defineComponent({
   }
 
   .image {
-    background-color: var(--color-grey-0);
     height: 100%;
     width: 100%;
+
+    &.blank {
+      background-color: var(--color-grey-0);
+    }
+
+    .img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
 }
 </style>
