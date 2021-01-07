@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     // gh-pages: uncomment the next line and replace <repoName> with actual name og github repo
-    // base: '/<repoName>/',
+    base: '/pop-image/',
     assetsDir: 'assets',
   },
 });
