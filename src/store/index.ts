@@ -23,6 +23,8 @@ const store = createStore({
     [FETCH_IMAGE_REQUEST](state: any) {
       state.images.isFetching = true;
       state.images.errorMessage = '';
+
+      state.images.activeImageRank = null;
     },
     [FETCH_IMAGE_SUCCESS](state, image) {
       const dataLength = state.images.data.length;
@@ -50,7 +52,9 @@ const store = createStore({
         .fetchImage()
         .then((res: any) => {
           if (res && res.url) {
-            commit(FETCH_IMAGE_SUCCESS, res.url);
+            setTimeout(() => {
+              commit(FETCH_IMAGE_SUCCESS, res.url);
+            }, 100);
           } else {
             commit(FETCH_IMAGE_FAILURE, 'No image found');
           }

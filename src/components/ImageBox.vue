@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 import { getImage, isImageFetching } from '../store/getters';
 
@@ -21,12 +21,6 @@ export default defineComponent({
   name: 'Image',
   setup() {
     const store = useStore();
-
-    console.log(store.state);
-
-    onMounted(() => {
-      store.dispatch('fetchImage');
-    });
 
     return {
       image: computed(() => getImage(store)),
