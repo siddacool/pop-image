@@ -1,4 +1,4 @@
-const baseUrlMain = 'https://source.unsplash.com/';
+const baseUrlMain = 'https://source.unsplash.com';
 
 export const baseUrl = baseUrlMain;
 
