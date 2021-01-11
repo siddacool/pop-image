@@ -1,10 +1,13 @@
 <template>
   <div class="home">
+    <nav>
+      <SettingsButton />
+    </nav>
     <ImageBox />
     <div class="control">
       <div class="main">
         <div class="container">
-          <div class="settings"><Tags /></div>
+          <Tags />
           <div class="buttons"><PhotoLoaderButton /></div>
         </div>
       </div>
@@ -19,6 +22,7 @@ import { useStore } from 'vuex';
 import ImageBox from '../components/ImageBox.vue';
 import PhotoLoaderButton from '../components/PhotoLoaderButton.vue';
 import Tags from '../components/Tags.vue';
+import SettingsButton from '../components/SettingsButton.vue';
 
 export default defineComponent({
   name: 'HomeView',
@@ -26,6 +30,7 @@ export default defineComponent({
     ImageBox,
     PhotoLoaderButton,
     Tags,
+    SettingsButton,
   },
   setup() {
     const store = useStore();
@@ -59,6 +64,16 @@ export default defineComponent({
       display: flex;
       justify-content: center;
       padding-top: var(--unit-3);
+    }
+  }
+
+  nav {
+    position: absolute;
+    top: var(--unit-1);
+    right: var(--unit-2);
+
+    @include onDesktop {
+      right: var(--unit-3);
     }
   }
 }

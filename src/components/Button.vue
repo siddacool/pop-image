@@ -51,12 +51,12 @@ export default defineComponent({
     fill: var(--color-grey-50);
     width: 19px;
     height: 19px;
-    position: relative;
-    top: -2px;
   }
 
   span {
     margin-left: var(--unit-1\2);
+    position: relative;
+    top: 2px;
   }
 }
 </style>

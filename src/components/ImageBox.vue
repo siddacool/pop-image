@@ -31,17 +31,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/mixins';
-
 .image-box {
   height: 100%;
-  padding: var(--unit-3);
+  padding: var(--unit-5) var(--unit-3);
   padding-bottom: 0;
   display: flex;
-
-  @include onTablet {
-    padding-top: var(--unit-5);
-  }
 
   .image {
     height: 100%;
