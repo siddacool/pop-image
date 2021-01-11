@@ -11,16 +11,19 @@
       />
     </svg>
   </Button>
+  <Modal :isModalOpen="true">bla</Modal>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Button from './Button.vue';
+import Modal from './Modal.vue';
 
 export default defineComponent({
   name: 'SettingsButton',
   components: {
     Button,
+    Modal,
   },
   setup() {
     const handleOpenSettings = (e: { preventDefault: () => void }) => {
