@@ -27,8 +27,6 @@ export default defineComponent({
     const gridClass = () => {
       let classes = '';
 
-      console.log(props);
-
       if (props.sm === 'flex') {
         classes += ' grid-item__sm--flex';
       } else {

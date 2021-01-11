@@ -1,11 +1,14 @@
 <template>
-  <teleport to="#modal-area">
-    <div class="modal-overlay"></div>
+  <teleport to="#modal-area" v-if="isModalOpen">
+    <div class="modal-overlay" v-on:click="(e) => $emit('modalClose', e)"></div>
     <div class="modal-container">
       <div class="modal">
         <div class="modal__header">
           {{ title }}
-          <Button class="close-button">
+          <Button
+            class="close-button"
+            v-on:click="(e) => $emit('modalClose', e)"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -42,6 +45,7 @@ export default defineComponent({
       default: false,
     },
   },
+  emits: ['modalClose'],
   components: {
     Button,
   },

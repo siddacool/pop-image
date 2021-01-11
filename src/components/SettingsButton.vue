@@ -11,7 +11,11 @@
       />
     </svg>
   </Button>
-  <Modal title="Settings" :isModalOpen="true">
+  <Modal
+    title="Settings"
+    :isModalOpen="isModalOpen"
+    @modalClose="handleCloseSettings"
+  >
     <Grid>
       <GridRow>
         <GridItem lg="7">
@@ -23,12 +27,17 @@
           />
         </GridItem>
       </GridRow>
+      <GridRow>
+        <GridItem>
+          <Button>Save Settings</Button>
+        </GridItem>
+      </GridRow>
     </Grid>
   </Modal>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import Button from './Button.vue';
 import Modal from './Modal.vue';
 import Grid from './Grid.vue';
@@ -47,13 +56,20 @@ export default defineComponent({
     TagInput,
   },
   setup() {
-    const handleOpenSettings = (e: { preventDefault: () => void }) => {
-      e.preventDefault();
-      console.log('yo');
+    const isModalOpen = ref(true);
+
+    const handleOpenSettings = () => {
+      isModalOpen.value = true;
+    };
+
+    const handleCloseSettings = () => {
+      isModalOpen.value = false;
     };
 
     return {
+      isModalOpen,
       handleOpenSettings,
+      handleCloseSettings,
     };
   },
 });
