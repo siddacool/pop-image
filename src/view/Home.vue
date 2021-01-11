@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <ImageBox />
     <div class="control">
       <div class="container">
         <div class="control__main">
@@ -7,7 +8,6 @@
         </div>
       </div>
     </div>
-    <ImageBox />
   </div>
 </template>
 
@@ -38,15 +38,15 @@ export default defineComponent({
 @import '../styles/mixins';
 
 .home {
-  --controls-height: 80px;
+  --controls-height: 100px;
 
   min-height: inherit;
   background-color: var(--color-bg-white);
   display: grid;
-  grid-template-rows: var(--controls-height) auto;
+  grid-template-rows: auto var(--controls-height);
 
   @include onDesktop {
-    --controls-height: 100px;
+    --controls-height: 170px;
   }
 
   .control {
@@ -57,12 +57,12 @@ export default defineComponent({
     &__main {
       height: 100%;
       display: flex;
-      align-items: flex-end;
-      padding: 0 var(--unit-3);
-      padding-bottom: var(--unit-3);
+      justify-content: center;
+      padding: var(--unit-3);
+      padding-bottom: 0;
 
-      @include onDesktop {
-        justify-content: center;
+      @include onTablet {
+        padding-top: var(--unit-6);
       }
     }
   }

@@ -35,12 +35,12 @@ export default defineComponent({
 
 .image-box {
   height: 100%;
-  padding: 0 var(--unit-3);
-  padding-bottom: var(--unit-6);
+  padding: var(--unit-3);
+  padding-bottom: 0;
   display: flex;
 
-  @include onDesktop {
-    padding-bottom: 100px;
+  @include onTablet {
+    padding-top: var(--unit-6);
   }
 
   .image {
