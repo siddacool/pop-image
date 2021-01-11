@@ -14,9 +14,14 @@
   <Modal title="Settings" :isModalOpen="true">
     <Grid>
       <GridRow>
-        <GridItem md="4">fawfw</GridItem>
-        <GridItem md="6">fawfw</GridItem>
-        <GridItem md="6">fawfw</GridItem>
+        <GridItem lg="7">
+          <TagInput
+            name="search-tags"
+            label="Search Tags"
+            placeholder="e.g. landcspe"
+            message="Control image search with tags"
+          />
+        </GridItem>
       </GridRow>
     </Grid>
   </Modal>
@@ -29,6 +34,7 @@ import Modal from './Modal.vue';
 import Grid from './Grid.vue';
 import GridRow from './GridRow.vue';
 import GridItem from './GridItem.vue';
+import TagInput from './TagInput.vue';
 
 export default defineComponent({
   name: 'SettingsButton',
@@ -38,6 +44,7 @@ export default defineComponent({
     Grid,
     GridRow,
     GridItem,
+    TagInput,
   },
   setup() {
     const handleOpenSettings = (e: { preventDefault: () => void }) => {
