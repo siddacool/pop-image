@@ -11,19 +11,33 @@
       />
     </svg>
   </Button>
-  <Modal :isModalOpen="true">bla</Modal>
+  <Modal title="Settings" :isModalOpen="true">
+    <Grid>
+      <GridRow>
+        <GridItem md="4">fawfw</GridItem>
+        <GridItem md="6">fawfw</GridItem>
+        <GridItem md="6">fawfw</GridItem>
+      </GridRow>
+    </Grid>
+  </Modal>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Button from './Button.vue';
 import Modal from './Modal.vue';
+import Grid from './Grid.vue';
+import GridRow from './GridRow.vue';
+import GridItem from './GridItem.vue';
 
 export default defineComponent({
   name: 'SettingsButton',
   components: {
     Button,
     Modal,
+    Grid,
+    GridRow,
+    GridItem,
   },
   setup() {
     const handleOpenSettings = (e: { preventDefault: () => void }) => {
