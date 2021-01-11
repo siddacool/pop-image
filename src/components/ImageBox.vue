@@ -40,7 +40,7 @@ export default defineComponent({
   display: flex;
 
   @include onTablet {
-    padding-top: var(--unit-6);
+    padding-top: var(--unit-5);
   }
 
   .image {

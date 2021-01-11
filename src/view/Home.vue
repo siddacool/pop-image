@@ -2,9 +2,10 @@
   <div class="home">
     <ImageBox />
     <div class="control">
-      <div class="container">
-        <div class="control__main">
-          <PhotoLoaderButton />
+      <div class="main">
+        <div class="container">
+          <div class="settings">Tags</div>
+          <div class="buttons"><PhotoLoaderButton /></div>
         </div>
       </div>
     </div>
@@ -38,32 +39,29 @@ export default defineComponent({
 @import '../styles/mixins';
 
 .home {
-  --controls-height: 100px;
-
   min-height: inherit;
   background-color: var(--color-bg-white);
-  display: grid;
-  grid-template-rows: auto var(--controls-height);
+  display: flex;
+  flex-direction: column;
 
-  @include onDesktop {
-    --controls-height: 170px;
+  .image-box {
+    flex: 1;
   }
 
   .control {
-    .container {
-      height: 100%;
+    --controls-height: 100px;
+    height: var(--controls-height);
+    padding: var(--unit-3);
+    padding-bottom: 0;
+
+    @include onDesktop {
+      --controls-height: 170px;
     }
 
-    &__main {
-      height: 100%;
+    .buttons {
       display: flex;
       justify-content: center;
-      padding: var(--unit-3);
-      padding-bottom: 0;
-
-      @include onTablet {
-        padding-top: var(--unit-6);
-      }
+      padding-top: var(--unit-3);
     }
   }
 }
