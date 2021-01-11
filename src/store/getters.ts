@@ -11,3 +11,6 @@ export const getImage = (store: {
 export const isImageFetching = (store: {
   state: { images: { isFetching: boolean } };
 }) => store.state.images.isFetching;
+
+export const getTags = (store: { state: { tags: string[] } }) =>
+  store.state.tags;

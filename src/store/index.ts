@@ -17,6 +17,7 @@ const store = createStore({
         data: [],
         activeImageRank: null,
       },
+      tags: ['landscape'],
     };
   },
   mutations: {
@@ -49,7 +50,7 @@ const store = createStore({
       commit(FETCH_IMAGE_REQUEST);
 
       imageApi
-        .fetchImage()
+        .fetchImage({ tags: state.tags })
         .then((res: any) => {
           if (res && res.url) {
             setTimeout(() => {

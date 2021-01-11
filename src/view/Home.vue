@@ -4,7 +4,7 @@
     <div class="control">
       <div class="main">
         <div class="container">
-          <div class="settings">Tags</div>
+          <div class="settings"><Tags /></div>
           <div class="buttons"><PhotoLoaderButton /></div>
         </div>
       </div>
@@ -18,12 +18,14 @@ import { useStore } from 'vuex';
 
 import ImageBox from '../components/ImageBox.vue';
 import PhotoLoaderButton from '../components/PhotoLoaderButton.vue';
+import Tags from '../components/Tags.vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
     ImageBox,
     PhotoLoaderButton,
+    Tags,
   },
   setup() {
     const store = useStore();
@@ -49,14 +51,9 @@ export default defineComponent({
   }
 
   .control {
-    --controls-height: 100px;
-    height: var(--controls-height);
+    height: 170px;
     padding: var(--unit-3);
     padding-bottom: 0;
-
-    @include onDesktop {
-      --controls-height: 170px;
-    }
 
     .buttons {
       display: flex;

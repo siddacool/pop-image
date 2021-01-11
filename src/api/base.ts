@@ -1,6 +1,7 @@
-const baseUrlMain = 'https://source.unsplash.com';
+const unsplashBaseUrlMain = 'https://source.unsplash.com';
 
-export const baseUrl = baseUrlMain;
+export const unsplashBaseUrl = unsplashBaseUrlMain;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const fetchUrl = (url: string): any => fetch(`${baseUrl}${url}`);
+export const unsplashFetchUrl = (url: string): any =>
+  fetch(`${unsplashBaseUrl}${url}`);
