@@ -5,9 +5,11 @@ import {
   FETCH_IMAGE_SUCCESS,
   FETCH_IMAGE_FAILURE,
   TOGGLE_SETTINGS_MODAL,
+  UPDATE_SEARCH_TAGS,
 } from '../helpers/constants/actions';
-import { createError } from '../helpers/utils';
+import { createError, textToArray } from '../helpers/utils';
 import imageApi from '../api/image';
+import tagsData from '../data/tags';
 
 const store = createStore({
   state() {
@@ -18,7 +20,7 @@ const store = createStore({
         data: [],
         activeImageRank: null,
       },
-      tags: ['landscape'],
+      tags: tagsData,
       settingsModalOpen: false,
     };
   },
@@ -45,6 +47,9 @@ const store = createStore({
     [TOGGLE_SETTINGS_MODAL](state) {
       state.settingsModalOpen = !state.settingsModalOpen;
     },
+    [UPDATE_SEARCH_TAGS](state, tags = []) {
+      state.tags = tags;
+    },
   },
   actions: {
     fetchImage({ state, commit }) {
@@ -69,8 +74,10 @@ const store = createStore({
           commit(FETCH_IMAGE_FAILURE, createError(err));
         });
     },
-    saveSettings(context) {
-      console.log(context);
+    saveSettings({ commit }, { tags = '' }) {
+      const tagsArray = textToArray(tags, ',');
+
+      commit(UPDATE_SEARCH_TAGS, tagsArray);
     },
     toggleSettingsModal({ commit }) {
       commit(TOGGLE_SETTINGS_MODAL);

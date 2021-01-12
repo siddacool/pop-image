@@ -1,3 +1,3 @@
-const tags = ['landscape'];
+const tags = ['land'];
 
 export default tags;

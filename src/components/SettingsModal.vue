@@ -32,6 +32,7 @@
 import { defineComponent, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { getTags, getIsSettingsModalOpen } from '../store/getters';
+import { arryToText } from '../helpers/utils';
 
 import Button from './Button.vue';
 import Modal from './Modal.vue';
@@ -52,19 +53,19 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const tagsStore = ref(getTags(store).join(','));
+    const tagsStore = ref(arryToText(getTags(store), ', '));
     const loading = ref(false);
 
     const handleCloseSettings = () => {
       store.dispatch('toggleSettingsModal');
-      tagsStore.value = getTags(store).join(',');
+      tagsStore.value = arryToText(getTags(store), ', ');
     };
 
     const handleSave = () => {
-      // store.dispatch('toggleSettingsModal');
-      // store.dispatch('fetchImage');
-
       loading.value = true;
+
+      const config = { tags: tagsStore.value };
+      store.dispatch('saveSettings', config);
 
       setTimeout(() => {
         loading.value = false;

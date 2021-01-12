@@ -1,6 +1,6 @@
 <template>
   <div class="tags">
-    Tags: <span v-if="tags.length">{{ tags.join(',') }}</span>
+    Tags: <span v-if="tags.length">{{ arryToText(tags, ', ') }}</span>
     <span v-else>No Search tags</span>
   </div>
 </template>
@@ -8,7 +8,9 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
+
 import { getTags } from '../store/getters';
+import { arryToText } from '../helpers/utils';
 
 export default defineComponent({
   name: 'Tags',
@@ -17,6 +19,7 @@ export default defineComponent({
 
     return {
       tags: computed(() => getTags(store)),
+      arryToText,
     };
   },
 });

@@ -15,3 +15,12 @@ export const createError = (err: any) => {
 
   return errorMsg;
 };
+
+export const textToArray = (text: string, separtor: string) =>
+  text
+    .trim()
+    .replace(/\s/g, '')
+    .split(separtor || ',');
+
+export const arryToText = (textArray: string[], joiner: string) =>
+  textArray.join(joiner);
