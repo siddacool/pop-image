@@ -18,3 +18,6 @@ export const getTags = (store: { state: { tags: string[] } }) =>
 export const getIsSettingsModalOpen = (store: {
   state: { settingsModalOpen: boolean };
 }) => store.state.settingsModalOpen;
+
+export const getTheme = (store: { state: { theme: string } }) =>
+  store.state.theme;

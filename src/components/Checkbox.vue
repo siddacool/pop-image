@@ -1,14 +1,16 @@
 <template>
-  <div class="tag-input" :class="disabled ? 'disabled' : ''">
-    <label v-if="label">{{ label }}</label>
-    <input
-      type="text"
-      :name="name"
-      :placeholder="placeholder"
-      :value="value"
-      v-on:input="(e) => $emit('input', e)"
-      :disabled="disabled"
-    />
+  <div class="checkbox" :class="disabled ? 'disabled' : ''">
+    <label>
+      <input
+        type="checkbox"
+        :name="name"
+        :value="value"
+        v-on:change="(e) => $emit('change', e)"
+        :disabled="disabled"
+        :checked="checked"
+      />
+      {{ label }}
+    </label>
     <InputMessage v-if="message">{{ message }}</InputMessage>
   </div>
 </template>
@@ -18,7 +20,7 @@ import { defineComponent } from 'vue';
 import InputMessage from './InputMessage.vue';
 
 export default defineComponent({
-  name: 'TagInput',
+  name: 'Checkbox',
   props: {
     name: {
       type: String,
@@ -32,10 +34,6 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    placeholder: {
-      type: String,
-      default: '',
-    },
     message: {
       type: String,
       default: '',
@@ -44,8 +42,12 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    checked: {
+      type: Boolean,
+      default: false,
+    },
   },
-  emits: ['input'],
+  emits: ['change'],
   components: {
     InputMessage,
   },
@@ -53,27 +55,25 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.tag-input {
+.checkbox {
   color: var(--color-grey-50);
   font-size: 16px;
-  display: flex;
-  flex-direction: column;
 
   input {
-    border: 2px solid var(--color-bg-grey-50);
+    border: 2px solid var(--color-grey-50);
     border-radius: var(--border-radius-1);
     outline: none;
     color: inherit;
     font-size: inherit;
-    padding: var(--unit-1);
-    background: transparent;
+    cursor: pointer;
+    margin-right: var(--unit-1);
 
     &:focus {
       outline: none;
     }
 
     &[disabled] {
-      background-color: var(--color-bg-grey-0);
+      background-color: var(--color-grey-0);
       color: var(--color-grey-20);
       border-color: var(--color-grey-20);
       cursor: default;
@@ -81,8 +81,14 @@ export default defineComponent({
   }
 
   label {
-    margin-bottom: var(--unit-1);
-    font-size: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
   }
 }
 </style>

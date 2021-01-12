@@ -16,9 +16,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent, onMounted, onBeforeMount } from 'vue';
 import { useStore } from 'vuex';
 
+import { applyThemeToBody } from '../helpers/utils';
+import { getTheme } from '../store/getters';
 import ImageBox from '../components/ImageBox.vue';
 import PhotoLoaderButton from '../components/PhotoLoaderButton.vue';
 import Tags from '../components/Tags.vue';
@@ -34,6 +36,11 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+
+    onBeforeMount(() => {
+      const themeFresh = getTheme(store);
+      applyThemeToBody(themeFresh === 'dark' ? true : false);
+    });
 
     onMounted(() => {
       store.dispatch('fetchImage');

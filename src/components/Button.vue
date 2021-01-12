@@ -34,11 +34,11 @@ export default defineComponent({
   }
 
   &:active {
-    background-color: var(--color-grey-10);
+    background-color: var(--color-bg-grey-10);
   }
 
   &[disabled] {
-    background-color: var(--color-grey-0);
+    background-color: var(--color-bg-grey-0);
     color: var(--color-grey-20);
     cursor: default;
 

@@ -17,7 +17,16 @@
             :disabled="loading"
           />
         </GridItem>
-        <GridItem lg="7"> </GridItem>
+      </GridRow>
+      <GridRow>
+        <GridItem lg="7">
+          <Checkbox
+            name="theme-selector"
+            label="Dark Theme"
+            @change="handleThemeChange"
+            :checked="isDarkTheme"
+          />
+        </GridItem>
       </GridRow>
       <GridRow>
         <GridItem>
@@ -31,7 +40,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
 import { useStore } from 'vuex';
-import { getTags, getIsSettingsModalOpen } from '../store/getters';
+import { getTags, getIsSettingsModalOpen, getTheme } from '../store/getters';
 import { arryToText } from '../helpers/utils';
 
 import Button from './Button.vue';
@@ -40,6 +49,7 @@ import Grid from './Grid.vue';
 import GridRow from './GridRow.vue';
 import GridItem from './GridItem.vue';
 import TagInput from './TagInput.vue';
+import Checkbox from './Checkbox.vue';
 
 export default defineComponent({
   name: 'SettingsModal',
@@ -50,12 +60,15 @@ export default defineComponent({
     GridRow,
     GridItem,
     TagInput,
+    Checkbox,
   },
   setup() {
     const store = useStore();
     const tagsStore = ref(arryToText(getTags(store), ', '));
     const loading = ref(false);
     const quickImageFetch = ref(false);
+    const theme = getTheme(store);
+    const isDarkTheme = ref(theme === 'dark' ? true : false);
 
     const handleCloseSettings = () => {
       if (quickImageFetch.value) {
@@ -63,14 +76,16 @@ export default defineComponent({
         quickImageFetch.value = false;
       }
 
+      const themeFresh = getTheme(store);
       store.dispatch('toggleSettingsModal');
       tagsStore.value = arryToText(getTags(store), ', ');
+      isDarkTheme.value = themeFresh === 'dark' ? true : false;
     };
 
     const handleSave = () => {
       loading.value = true;
 
-      const config = { tags: tagsStore.value };
+      const config = { tags: tagsStore.value, isDarkTheme: isDarkTheme.value };
       store.dispatch('saveSettings', config);
       quickImageFetch.value = true;
 
@@ -83,6 +98,10 @@ export default defineComponent({
       tagsStore.value = e.target.value;
     };
 
+    const handleThemeChange = () => {
+      isDarkTheme.value = !isDarkTheme.value;
+    };
+
     return {
       isModalOpen: computed(() => getIsSettingsModalOpen(store)),
       handleCloseSettings,
@@ -90,6 +109,8 @@ export default defineComponent({
       tags: tagsStore,
       changeTags,
       loading,
+      handleThemeChange,
+      isDarkTheme,
     };
   },
 });

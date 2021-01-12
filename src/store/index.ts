@@ -6,8 +6,9 @@ import {
   FETCH_IMAGE_FAILURE,
   TOGGLE_SETTINGS_MODAL,
   UPDATE_SEARCH_TAGS,
+  SET_THEME,
 } from '../helpers/constants/actions';
-import { createError, textToArray } from '../helpers/utils';
+import { createError, textToArray, applyThemeToBody } from '../helpers/utils';
 import imageApi from '../api/image';
 import { getStorage, updateStorage } from '../helpers/storage';
 
@@ -15,6 +16,12 @@ const getTagsFromStorage = () => {
   const { tags = [] } = getStorage();
 
   return tags;
+};
+
+const getthemeFromStorage = () => {
+  const { theme = 'light' } = getStorage();
+
+  return theme;
 };
 
 const store = createStore({
@@ -26,6 +33,7 @@ const store = createStore({
         data: [],
         activeImageRank: null,
       },
+      theme: getthemeFromStorage(),
       tags: getTagsFromStorage(),
       settingsModalOpen: false,
     };
@@ -57,6 +65,11 @@ const store = createStore({
       state.tags = tags;
       updateStorage({ tags });
     },
+    [SET_THEME](state, isDarkTheme = false) {
+      const theme = isDarkTheme ? 'dark' : 'light';
+      state.theme = theme;
+      updateStorage({ theme });
+    },
   },
   actions: {
     fetchImage({ state, commit }) {
@@ -81,10 +94,13 @@ const store = createStore({
           commit(FETCH_IMAGE_FAILURE, createError(err));
         });
     },
-    saveSettings({ commit }, { tags = '' }) {
+    saveSettings({ commit }, { tags = '', isDarkTheme = false }) {
       const tagsArray = textToArray(tags, ',');
 
       commit(UPDATE_SEARCH_TAGS, tagsArray);
+      commit(SET_THEME, isDarkTheme);
+
+      applyThemeToBody(isDarkTheme);
     },
     toggleSettingsModal({ commit }) {
       commit(TOGGLE_SETTINGS_MODAL);

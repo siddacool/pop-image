@@ -7,6 +7,10 @@
 
   --color-bg-white: var(--color-white);
   --color-bg-grey-0: var(--color-grey-0);
+  --color-bg-grey-50: var(--color-grey-50);
+  --color-bg-grey-10: var(--color-grey-10);
+
+  --color-bg-transparent-black: rgb(0 0 0 / 85%);
 
   --unit-1\4: 2px;
   --unit-1\2: 4px;
@@ -29,8 +33,12 @@
 
 .dark {
   --color-white: #000;
-  --color-grey-50: #fff;
+  --color-grey-50: #d8d8d8;
 
   --color-bg-white: #111115;
   --color-bg-grey-0: #353535;
+  --color-bg-grey-50: #888888;
+  --color-bg-grey-10: #a9a9a9;
+
+  --color-bg-transparent-black: rgb(78 78 78 / 85%);
 }

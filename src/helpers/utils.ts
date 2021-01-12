@@ -25,3 +25,16 @@ export const textToArray = (text: string, separtor: string) =>
 
 export const arryToText = (textArray: string[], joiner: string) =>
   textArray.join(joiner);
+
+export const applyThemeToBody = (isDarkTheme = false) => {
+  const bodyContainer = document.querySelector('body');
+
+  if (bodyContainer) {
+    console.log('yo');
+    if (isDarkTheme) {
+      bodyContainer?.classList.add('dark');
+    } else {
+      bodyContainer?.classList.remove('dark');
+    }
+  }
+};

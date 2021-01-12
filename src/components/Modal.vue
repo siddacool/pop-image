@@ -75,7 +75,7 @@ export default defineComponent({
   top: 0;
   left: 0;
   z-index: 1000;
-  background-color: rgba($color: #000000, $alpha: 0.85);
+  background-color: var(--color-bg-transparent-black);
   width: 100vw;
   height: 100vh;
 }
@@ -95,7 +95,7 @@ export default defineComponent({
 }
 
 .modal {
-  background-color: var(--color-white);
+  background-color: var(--color-bg-white);
   border-radius: var(--border-radius-1);
   color: var(--color-grey-50);
   font-size: 16px;
