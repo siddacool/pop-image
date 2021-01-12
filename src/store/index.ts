@@ -9,7 +9,13 @@ import {
 } from '../helpers/constants/actions';
 import { createError, textToArray } from '../helpers/utils';
 import imageApi from '../api/image';
-import tagsData from '../data/tags';
+import { getStorage, updateStorage } from '../helpers/storage';
+
+const getTagsFromStorage = () => {
+  const { tags = [] } = getStorage();
+
+  return tags;
+};
 
 const store = createStore({
   state() {
@@ -20,7 +26,7 @@ const store = createStore({
         data: [],
         activeImageRank: null,
       },
-      tags: tagsData,
+      tags: getTagsFromStorage(),
       settingsModalOpen: false,
     };
   },
@@ -49,6 +55,7 @@ const store = createStore({
     },
     [UPDATE_SEARCH_TAGS](state, tags = []) {
       state.tags = tags;
+      updateStorage({ tags });
     },
   },
   actions: {
@@ -76,8 +83,6 @@ const store = createStore({
     },
     saveSettings({ commit }, { tags = '' }) {
       const tagsArray = textToArray(tags, ',');
-
-      console.log(tagsArray);
 
       commit(UPDATE_SEARCH_TAGS, tagsArray);
     },
