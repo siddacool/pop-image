@@ -55,8 +55,14 @@ export default defineComponent({
     const store = useStore();
     const tagsStore = ref(arryToText(getTags(store), ', '));
     const loading = ref(false);
+    const quickImageFetch = ref(false);
 
     const handleCloseSettings = () => {
+      if (quickImageFetch.value) {
+        store.dispatch('fetchImage');
+        quickImageFetch.value = false;
+      }
+
       store.dispatch('toggleSettingsModal');
       tagsStore.value = arryToText(getTags(store), ', ');
     };
@@ -66,6 +72,7 @@ export default defineComponent({
 
       const config = { tags: tagsStore.value };
       store.dispatch('saveSettings', config);
+      quickImageFetch.value = true;
 
       setTimeout(() => {
         loading.value = false;
