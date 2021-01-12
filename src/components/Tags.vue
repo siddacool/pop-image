@@ -1,6 +1,9 @@
 <template>
   <div class="tags">
-    Tags: <span v-if="tags.length">{{ arryToText(tags, ', ') }}</span>
+    <span v-if="tags.length"
+      ><span class="search-text">Search tags: </span>
+      {{ arryToText(tags, ', ') }}</span
+    >
     <span v-else>No Search tags</span>
   </div>
 </template>
@@ -26,8 +29,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/mixins';
+
 .tags {
   font-size: 15px;
   color: var(--color-grey-50);
+
+  .search-text {
+    display: none;
+
+    @include onTablet {
+      display: inline-block;
+    }
+  }
 }
 </style>

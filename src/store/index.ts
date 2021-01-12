@@ -77,6 +77,8 @@ const store = createStore({
     saveSettings({ commit }, { tags = '' }) {
       const tagsArray = textToArray(tags, ',');
 
+      console.log(tagsArray);
+
       commit(UPDATE_SEARCH_TAGS, tagsArray);
     },
     toggleSettingsModal({ commit }) {

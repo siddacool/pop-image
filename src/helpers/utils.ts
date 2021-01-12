@@ -20,7 +20,8 @@ export const textToArray = (text: string, separtor: string) =>
   text
     .trim()
     .replace(/\s/g, '')
-    .split(separtor || ',');
+    .split(separtor || ',')
+    .filter((t) => t && t.trim() !== '');
 
 export const arryToText = (textArray: string[], joiner: string) =>
   textArray.join(joiner);

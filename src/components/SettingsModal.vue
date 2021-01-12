@@ -10,7 +10,7 @@
           <TagInput
             name="search-tags"
             label="Search Tags"
-            placeholder="e.g. landcspe"
+            placeholder="Comma separated values e.g. land, city"
             message="Control image search with tags"
             :value="tags"
             @input="changeTags"
