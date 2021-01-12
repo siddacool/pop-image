@@ -4,6 +4,7 @@ import {
   FETCH_IMAGE_REQUEST,
   FETCH_IMAGE_SUCCESS,
   FETCH_IMAGE_FAILURE,
+  TOGGLE_SETTINGS_MODAL,
 } from '../helpers/constants/actions';
 import { createError } from '../helpers/utils';
 import imageApi from '../api/image';
@@ -18,6 +19,7 @@ const store = createStore({
         activeImageRank: null,
       },
       tags: ['landscape'],
+      settingsModalOpen: false,
     };
   },
   mutations: {
@@ -39,6 +41,9 @@ const store = createStore({
     [FETCH_IMAGE_FAILURE](state, errorMessage = '') {
       state.images.isFetching = false;
       state.images.errorMessage = errorMessage;
+    },
+    [TOGGLE_SETTINGS_MODAL](state) {
+      state.settingsModalOpen = !state.settingsModalOpen;
     },
   },
   actions: {
@@ -63,6 +68,12 @@ const store = createStore({
         .catch((err: any) => {
           commit(FETCH_IMAGE_FAILURE, createError(err));
         });
+    },
+    saveSettings(context) {
+      console.log(context);
+    },
+    toggleSettingsModal({ commit }) {
+      commit(TOGGLE_SETTINGS_MODAL);
     },
   },
 });

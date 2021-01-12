@@ -14,3 +14,7 @@ export const isImageFetching = (store: {
 
 export const getTags = (store: { state: { tags: string[] } }) =>
   store.state.tags;
+
+export const getIsSettingsModalOpen = (store: {
+  state: { settingsModalOpen: boolean };
+}) => store.state.settingsModalOpen;

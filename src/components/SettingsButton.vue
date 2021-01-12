@@ -11,65 +11,31 @@
       />
     </svg>
   </Button>
-  <Modal
-    title="Settings"
-    :isModalOpen="isModalOpen"
-    @modalClose="handleCloseSettings"
-  >
-    <Grid>
-      <GridRow>
-        <GridItem lg="7">
-          <TagInput
-            name="search-tags"
-            label="Search Tags"
-            placeholder="e.g. landcspe"
-            message="Control image search with tags"
-          />
-        </GridItem>
-      </GridRow>
-      <GridRow>
-        <GridItem>
-          <Button>Save Settings</Button>
-        </GridItem>
-      </GridRow>
-    </Grid>
-  </Modal>
+  <SettingsModal />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
+import { useStore } from 'vuex';
+
 import Button from './Button.vue';
-import Modal from './Modal.vue';
-import Grid from './Grid.vue';
-import GridRow from './GridRow.vue';
-import GridItem from './GridItem.vue';
-import TagInput from './TagInput.vue';
+import SettingsModal from './SettingsModal.vue';
 
 export default defineComponent({
   name: 'SettingsButton',
   components: {
     Button,
-    Modal,
-    Grid,
-    GridRow,
-    GridItem,
-    TagInput,
+    SettingsModal,
   },
   setup() {
-    const isModalOpen = ref(true);
+    const store = useStore();
 
     const handleOpenSettings = () => {
-      isModalOpen.value = true;
-    };
-
-    const handleCloseSettings = () => {
-      isModalOpen.value = false;
+      store.dispatch('toggleSettingsModal');
     };
 
     return {
-      isModalOpen,
       handleOpenSettings,
-      handleCloseSettings,
     };
   },
 });
