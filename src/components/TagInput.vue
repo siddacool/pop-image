@@ -1,5 +1,5 @@
 <template>
-  <div class="tag-input">
+  <div class="tag-input" :class="disabled ? 'disabled' : ''">
     <label v-if="label">{{ label }}</label>
     <input
       type="text"
@@ -7,6 +7,7 @@
       :placeholder="placeholder"
       :value="value"
       v-on:input="(e) => $emit('input', e)"
+      :disabled="disabled"
     />
     <InputMessage v-if="message">{{ message }}</InputMessage>
   </div>
@@ -39,6 +40,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['input'],
   components: {
@@ -64,6 +69,13 @@ export default defineComponent({
 
     &:focus {
       outline: none;
+    }
+
+    &[disabled] {
+      background-color: var(--color-grey-0);
+      color: var(--color-grey-20);
+      border-color: var(--color-grey-20);
+      cursor: default;
     }
   }
 

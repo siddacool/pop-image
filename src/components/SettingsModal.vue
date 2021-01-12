@@ -14,13 +14,14 @@
             message="Control image search with tags"
             :value="tags"
             @input="changeTags"
+            :disabled="loading"
           />
         </GridItem>
         <GridItem lg="7"> </GridItem>
       </GridRow>
       <GridRow>
         <GridItem>
-          <Button @click="handleSave">Save Settings</Button>
+          <Button @click="handleSave" :disabled="loading">Save Settings</Button>
         </GridItem>
       </GridRow>
     </Grid>
@@ -52,11 +53,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const tagsStore = ref(getTags(store).join(','));
-
-    const handleOpenSettings = () => {
-      store.dispatch('toggleSettingsModal');
-      tagsStore.value = getTags(store).join(',');
-    };
+    const loading = ref(false);
 
     const handleCloseSettings = () => {
       store.dispatch('toggleSettingsModal');
@@ -66,6 +63,12 @@ export default defineComponent({
     const handleSave = () => {
       // store.dispatch('toggleSettingsModal');
       // store.dispatch('fetchImage');
+
+      loading.value = true;
+
+      setTimeout(() => {
+        loading.value = false;
+      }, 500);
     };
 
     const changeTags = (e: { target: { value: string } }) => {
@@ -74,11 +77,11 @@ export default defineComponent({
 
     return {
       isModalOpen: computed(() => getIsSettingsModalOpen(store)),
-      handleOpenSettings,
       handleCloseSettings,
       handleSave,
       tags: tagsStore,
       changeTags,
+      loading,
     };
   },
 });
