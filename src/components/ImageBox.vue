@@ -65,7 +65,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .image-box {
   height: 100%;
-  padding: var(--unit-5) var(--unit-3);
+  padding: var(--unit-8) var(--unit-3);
   padding-bottom: 0;
   display: flex;
 
