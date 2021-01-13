@@ -82,12 +82,23 @@ export default defineComponent({
 
 .modal-container {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  max-width: 85vw;
-  top: 200px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  height: 100vh;
   z-index: 2000;
+
+  @include onTablet {
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 85vw;
+    height: initial;
+  }
+
+  @include onDesktop {
+    top: 200px;
+  }
 
   @include onDesktopLarge {
     width: 800px;
@@ -99,6 +110,7 @@ export default defineComponent({
   border-radius: var(--border-radius-1);
   color: var(--color-grey-50);
   font-size: 16px;
+  height: 100%;
 
   &__header {
     padding: var(--unit-2) var(--unit-3);
