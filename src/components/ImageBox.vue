@@ -12,6 +12,10 @@
           v-if="image"
           :style="`width: ${imageWidth}px; height: ${imageHeight}px;`"
         />
+
+        <div class="loading-placeholder" v-else>
+          <LoaderRings :size="100" />
+        </div>
       </div>
     </div>
   </div>
@@ -20,10 +24,15 @@
 <script lang="ts">
 import { defineComponent, computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
+
 import { getImage, isImageFetching } from '../store/getters';
+import LoaderRings from './LoaderRings.vue';
 
 export default defineComponent({
   name: 'Image',
+  components: {
+    LoaderRings,
+  },
   setup() {
     const store = useStore();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -84,6 +93,14 @@ export default defineComponent({
       object-fit: contain;
       object-position: center center;
     }
+  }
+
+  .loading-placeholder {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>
