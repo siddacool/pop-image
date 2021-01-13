@@ -14,7 +14,7 @@
         />
 
         <div class="loading-placeholder" v-else>
-          <LoaderRings :size="100" />
+          <LoaderThreeDots />
         </div>
       </div>
     </div>
@@ -27,11 +27,13 @@ import { useStore } from 'vuex';
 
 import { getImage, isImageFetching } from '../store/getters';
 import LoaderRings from './LoaderRings.vue';
+import LoaderThreeDots from './LoaderThreeDots.vue';
 
 export default defineComponent({
   name: 'Image',
   components: {
     LoaderRings,
+    LoaderThreeDots,
   },
   setup() {
     const store = useStore();
