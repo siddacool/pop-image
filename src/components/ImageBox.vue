@@ -12,18 +12,13 @@
           v-if="image"
           :style="`width: ${imageWidth}px; height: ${imageHeight}px;`"
         />
-        <!-- <div
-          class="img"
-          :style="`background-image: url(${image})`"
-          v-if="image"
-        /> -->
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, onMounted } from 'vue';
+import { defineComponent, computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { getImage, isImageFetching } from '../store/getters';
 
@@ -36,11 +31,24 @@ export default defineComponent({
     const imageHeight = ref(0);
     const imageWidth = ref(0);
 
-    onMounted(() => {
+    const handleSetImageSize = () => {
+      if (!imageContainerRef.value) {
+        return;
+      }
+
       const positionInfo = imageContainerRef.value.getBoundingClientRect();
 
       imageHeight.value = positionInfo.height;
       imageWidth.value = positionInfo.width;
+    };
+
+    onMounted(() => {
+      handleSetImageSize();
+      window.addEventListener('resize', handleSetImageSize);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', () => handleSetImageSize);
     });
 
     return {
