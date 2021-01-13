@@ -72,7 +72,7 @@ const store = createStore({
     },
   },
   actions: {
-    fetchImage({ state, commit }) {
+    fetchImage({ state, commit }, payload) {
       if (state.images.isFetching) {
         return;
       }
@@ -83,9 +83,13 @@ const store = createStore({
         .fetchImage({ tags: state.tags })
         .then((res: any) => {
           if (res && res.url) {
-            setTimeout(() => {
+            if (payload && payload.firstLoad) {
               commit(FETCH_IMAGE_SUCCESS, res.url);
-            }, 100);
+            } else {
+              setTimeout(() => {
+                commit(FETCH_IMAGE_SUCCESS, res.url);
+              }, 2000);
+            }
           } else {
             commit(FETCH_IMAGE_FAILURE, 'No image found');
           }

@@ -43,7 +43,7 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      store.dispatch('fetchImage');
+      store.dispatch('fetchImage', { firstLoad: true });
     });
   },
 });
