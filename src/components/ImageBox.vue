@@ -26,13 +26,11 @@ import { defineComponent, computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 
 import { getImage, isImageFetching } from '../store/getters';
-import LoaderRings from './LoaderRings.vue';
 import LoaderThreeDots from './LoaderThreeDots.vue';
 
 export default defineComponent({
   name: 'Image',
   components: {
-    LoaderRings,
     LoaderThreeDots,
   },
   setup() {
@@ -74,6 +72,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/mixins';
+
 .image-box {
   height: 100%;
   padding: var(--unit-8) var(--unit-3);
@@ -83,6 +83,9 @@ export default defineComponent({
   .image {
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &.blank {
       background-color: var(--color-bg-grey-0);
@@ -94,6 +97,13 @@ export default defineComponent({
       height: 100%;
       object-fit: contain;
       object-position: center center;
+      min-height: 200px;
+      min-width: 200px;
+
+      @include onDesktop {
+        min-height: 400px;
+        min-width: 700px;
+      }
     }
   }
 
