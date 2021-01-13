@@ -30,7 +30,6 @@ export const applyThemeToBody = (isDarkTheme = false) => {
   const bodyContainer = document.querySelector('body');
 
   if (bodyContainer) {
-    console.log('yo');
     if (isDarkTheme) {
       bodyContainer?.classList.add('dark');
     } else {
