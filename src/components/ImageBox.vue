@@ -1,19 +1,29 @@
 <template>
   <div class="image-box">
     <div class="container">
-      <div class="image" :class="!image || isImageFetching ? 'blank' : ''">
-        <div
+      <div
+        class="image"
+        ref="imageContainerRef"
+        :class="!image || isImageFetching ? 'blank' : ''"
+      >
+        <img
+          :src="image"
+          alt="image"
+          v-if="image"
+          :style="`width: ${imageWidth}px; height: ${imageHeight}px;`"
+        />
+        <!-- <div
           class="img"
           :style="`background-image: url(${image})`"
           v-if="image"
-        />
+        /> -->
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { getImage, isImageFetching } from '../store/getters';
 
@@ -21,10 +31,24 @@ export default defineComponent({
   name: 'Image',
   setup() {
     const store = useStore();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const imageContainerRef: any = ref(null);
+    const imageHeight = ref(0);
+    const imageWidth = ref(0);
+
+    onMounted(() => {
+      const positionInfo = imageContainerRef.value.getBoundingClientRect();
+
+      imageHeight.value = positionInfo.height;
+      imageWidth.value = positionInfo.width;
+    });
 
     return {
       image: computed(() => getImage(store)),
       isImageFetching: computed(() => isImageFetching(store)),
+      imageContainerRef,
+      imageWidth,
+      imageHeight,
     };
   },
 });
@@ -45,13 +69,12 @@ export default defineComponent({
       background-color: var(--color-bg-grey-0);
     }
 
-    .img {
+    img {
       display: block;
       width: 100%;
       height: 100%;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
+      object-fit: contain;
+      object-position: center center;
     }
   }
 }
