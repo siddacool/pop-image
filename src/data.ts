@@ -1,4 +1,5 @@
-const tags = ['land'];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const tags: any[] = [];
 const theme = 'light';
 
 export default {

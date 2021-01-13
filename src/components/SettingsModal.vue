@@ -6,12 +6,12 @@
   >
     <Grid>
       <GridRow>
-        <GridItem lg="7">
+        <GridItem lg="8">
           <TagInput
             name="search-tags"
             label="Search Tags"
-            placeholder="Comma separated values e.g. land, city"
-            message="Control image search with tags"
+            placeholder="Comma-separated values e.g. land, city"
+            message="Control image search with tags (comma-separated values e.g. land, city)"
             :value="tags"
             @input="changeTags"
             :disabled="loading"
@@ -19,7 +19,7 @@
         </GridItem>
       </GridRow>
       <GridRow>
-        <GridItem lg="7">
+        <GridItem lg="8">
           <Checkbox
             name="theme-selector"
             label="Dark Theme"
