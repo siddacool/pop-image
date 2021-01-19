@@ -14,7 +14,6 @@
             message="Control image search with tags (comma-separated values e.g. land, city)"
             :value="tags"
             @input="changeTags"
-            :disabled="loading"
           />
         </GridItem>
       </GridRow>
@@ -30,7 +29,7 @@
       </GridRow>
       <GridRow>
         <GridItem>
-          <Button @click="handleSave" :disabled="loading">Save Settings</Button>
+          <Button @click="handleSave" solid>Save Settings</Button>
         </GridItem>
       </GridRow>
     </Grid>
@@ -65,7 +64,6 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const tagsStore = ref(arryToText(getTags(store), ', '));
-    const loading = ref(false);
     const theme = getTheme(store);
     const isDarkTheme = ref(theme === 'dark' ? true : false);
 
@@ -77,16 +75,10 @@ export default defineComponent({
     };
 
     const handleSave = () => {
-      loading.value = true;
-
       store.dispatch('saveSettings', {
         tags: tagsStore.value,
         isDarkTheme: isDarkTheme.value,
       });
-
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
     };
 
     const changeTags = (e: { target: { value: string } }) => {
@@ -103,7 +95,6 @@ export default defineComponent({
       handleSave,
       tags: tagsStore,
       changeTags,
-      loading,
       handleThemeChange,
       isDarkTheme,
     };
