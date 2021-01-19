@@ -2,7 +2,6 @@
   "name": "Pop image",
   "short_name": "Pop image",
   "orientation": "portrait",
-  "start_url": "https://siddacool.github.io/pop-image/",
   "display": "standalone",
   "background_color": "#353535",
   "description": "Get random image from Unsplash on each refresh.",
