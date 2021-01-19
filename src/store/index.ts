@@ -7,6 +7,7 @@ import {
   TOGGLE_SETTINGS_MODAL,
   UPDATE_SEARCH_TAGS,
   SET_THEME,
+  SET_REFRESH_REQUIRED,
 } from '../helpers/constants/actions';
 import { createError, textToArray, applyThemeToBody } from '../helpers/utils';
 import imageApi from '../api/image';
@@ -32,6 +33,7 @@ const store = createStore({
         errorMessage: '',
         data: [],
         activeImageRank: null,
+        isRefreshRequired: false,
       },
       theme: getthemeFromStorage(),
       tags: getTagsFromStorage(),
@@ -41,6 +43,7 @@ const store = createStore({
   mutations: {
     [FETCH_IMAGE_REQUEST](state: any) {
       state.images.isFetching = true;
+      state.images.isRefreshRequired = false;
       state.images.errorMessage = '';
 
       state.images.activeImageRank = null;
@@ -64,6 +67,9 @@ const store = createStore({
     [UPDATE_SEARCH_TAGS](state, tags = []) {
       state.tags = tags;
       updateStorage({ tags });
+    },
+    [SET_REFRESH_REQUIRED](state) {
+      state.images.isRefreshRequired = true;
     },
     [SET_THEME](state, isDarkTheme = false) {
       const theme = isDarkTheme ? 'dark' : 'light';
@@ -103,6 +109,7 @@ const store = createStore({
 
       commit(UPDATE_SEARCH_TAGS, tagsArray);
       commit(SET_THEME, isDarkTheme);
+      commit(SET_REFRESH_REQUIRED);
 
       applyThemeToBody(isDarkTheme);
     },

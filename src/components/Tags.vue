@@ -5,6 +5,7 @@
       {{ arryToText(tags, ', ') }}</span
     >
     <span v-else>No Search tags</span>
+    <span v-if="isImageRefreshRequired"> (refresh required)</span>
   </div>
 </template>
 
@@ -12,7 +13,7 @@
 import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 
-import { getTags } from '../store/getters';
+import { getTags, isImageRefreshRequired } from '../store/getters';
 import { arryToText } from '../helpers/utils';
 
 export default defineComponent({
@@ -22,6 +23,7 @@ export default defineComponent({
 
     return {
       tags: computed(() => getTags(store)),
+      isImageRefreshRequired: computed(() => isImageRefreshRequired(store)),
       arryToText,
     };
   },

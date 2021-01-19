@@ -66,16 +66,10 @@ export default defineComponent({
     const store = useStore();
     const tagsStore = ref(arryToText(getTags(store), ', '));
     const loading = ref(false);
-    const quickImageFetch = ref(false);
     const theme = getTheme(store);
     const isDarkTheme = ref(theme === 'dark' ? true : false);
 
     const handleCloseSettings = () => {
-      if (quickImageFetch.value) {
-        store.dispatch('fetchImage');
-        quickImageFetch.value = false;
-      }
-
       const themeFresh = getTheme(store);
       store.dispatch('toggleSettingsModal');
       tagsStore.value = arryToText(getTags(store), ', ');
@@ -85,9 +79,10 @@ export default defineComponent({
     const handleSave = () => {
       loading.value = true;
 
-      const config = { tags: tagsStore.value, isDarkTheme: isDarkTheme.value };
-      store.dispatch('saveSettings', config);
-      quickImageFetch.value = true;
+      store.dispatch('saveSettings', {
+        tags: tagsStore.value,
+        isDarkTheme: isDarkTheme.value,
+      });
 
       setTimeout(() => {
         loading.value = false;
