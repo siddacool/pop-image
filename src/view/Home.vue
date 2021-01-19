@@ -19,8 +19,7 @@
 import { defineComponent, onMounted, onBeforeMount } from 'vue';
 import { useStore } from 'vuex';
 
-import { applyThemeToBody } from '../helpers/utils';
-import { getTheme } from '../store/getters';
+import { applyThemeToBodyFromLocalStorage } from '../helpers/utils';
 import ImageBox from '../components/ImageBox.vue';
 import PhotoLoaderButton from '../components/PhotoLoaderButton.vue';
 import Tags from '../components/Tags.vue';
@@ -38,8 +37,7 @@ export default defineComponent({
     const store = useStore();
 
     onBeforeMount(() => {
-      const themeFresh = getTheme(store);
-      applyThemeToBody(themeFresh === 'dark' ? true : false);
+      applyThemeToBodyFromLocalStorage();
     });
 
     onMounted(() => {

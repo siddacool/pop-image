@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { getStorage } from './storage';
+
 export const createError = (err: any) => {
   let errorMsg = 'Unknown error occurred';
 
@@ -26,7 +28,7 @@ export const textToArray = (text: string, separtor: string) =>
 export const arryToText = (textArray: string[], joiner: string) =>
   textArray.join(joiner);
 
-export const applyThemeToBody = (isDarkTheme = false) => {
+const setBodyTheme = (isDarkTheme = false) => {
   const bodyContainer = document.querySelector('body');
 
   if (bodyContainer) {
@@ -36,4 +38,14 @@ export const applyThemeToBody = (isDarkTheme = false) => {
       bodyContainer?.classList.remove('dark');
     }
   }
+};
+
+export const applyThemeToBodyFromLocalStorage = () => {
+  const { theme = 'light' } = getStorage();
+  const isDarkTheme = theme === 'dark' ? true : false;
+  setBodyTheme(isDarkTheme);
+};
+
+export const applyThemeToBody = (isDarkTheme = false) => {
+  setBodyTheme(isDarkTheme);
 };
