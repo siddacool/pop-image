@@ -1,5 +1,5 @@
 <template>
-  <button class="button">
+  <button class="button" :class="solid ? 'button--solid' : ''">
     <slot />
   </button>
 </template>
@@ -9,6 +9,12 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Button',
+  props: {
+    solid: {
+      type: Boolean,
+      default: false,
+    },
+  },
 });
 </script>
 
@@ -35,6 +41,10 @@ export default defineComponent({
 
   &:active {
     background-color: var(--color-bg-grey-10);
+  }
+
+  &--solid {
+    background-color: var(--color-bg-grey-5);
   }
 
   &[disabled] {
