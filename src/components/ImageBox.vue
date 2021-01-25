@@ -47,8 +47,13 @@ export default defineComponent({
 
       const positionInfo = imageContainerRef.value.getBoundingClientRect();
 
-      imageHeight.value = positionInfo.height;
-      imageWidth.value = positionInfo.width;
+      const windowHeightAdjusted = window.innerHeight - 250;
+
+      imageHeight.value =
+        positionInfo.height < windowHeightAdjusted && window.innerWidth >= 1048
+          ? windowHeightAdjusted
+          : positionInfo.height;
+      imageWidth.value = window.innerWidth >= 1048 ? 1000 : positionInfo.width;
     };
 
     onMounted(() => {
