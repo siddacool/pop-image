@@ -1,0 +1,35 @@
+:root {
+  --dodo-ui-element-height-small: 39px;
+  --dodo-ui-element-height-normal: 45px;
+  --dodo-ui-element-height-large: 55px;
+  --dodo-ui-track-element-height-small: 11px;
+  --dodo-ui-track-element-height-normal: 13px;
+  --dodo-ui-track-element-height-large: 15px;
+  --dodo-ui-element-border-width: 6px;
+
+  --dodo-color-primary-50: var(--dodo-color-base-taupe-50);
+  --dodo-color-primary-100: var(--dodo-color-base-taupe-100);
+  --dodo-color-primary-200: var(--dodo-color-base-taupe-200);
+  --dodo-color-primary-300: var(--dodo-color-base-taupe-300);
+  --dodo-color-primary-400: var(--dodo-color-base-taupe-400);
+  --dodo-color-primary-500: var(--dodo-color-base-taupe-500);
+  --dodo-color-primary-600: var(--dodo-color-base-taupe-600);
+  --dodo-color-primary-700: var(--dodo-color-base-taupe-700);
+  --dodo-color-primary-800: var(--dodo-color-base-taupe-800);
+  --dodo-color-primary-900: var(--dodo-color-base-taupe-900);
+  --dodo-color-primary-950: var(--dodo-color-base-taupe-950);
+}
+
+.dodo-theme--dark {
+  --dodo-color-primary-50: var(--dodo-color-base-taupe-950);
+  --dodo-color-primary-100: var(--dodo-color-base-taupe-900);
+  --dodo-color-primary-200: var(--dodo-color-base-taupe-800);
+  --dodo-color-primary-300: var(--dodo-color-base-taupe-700);
+  --dodo-color-primary-400: var(--dodo-color-base-taupe-600);
+  --dodo-color-primary-500: var(--dodo-color-base-taupe-500);
+  --dodo-color-primary-600: var(--dodo-color-base-taupe-400);
+  --dodo-color-primary-700: var(--dodo-color-base-taupe-300);
+  --dodo-color-primary-800: var(--dodo-color-base-taupe-200);
+  --dodo-color-primary-900: var(--dodo-color-base-taupe-100);
+  --dodo-color-primary-950: var(--dodo-color-base-taupe-50);
+}
