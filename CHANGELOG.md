@@ -1,5 +1,11 @@
 # pop-image
 
+## 2.1.1
+
+### Patch Changes
+
+- 0e43eee: auto commit added for changeset
+
 ## 2.1.0
 
 ### Minor Changes
