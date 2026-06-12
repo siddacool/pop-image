@@ -25,10 +25,15 @@ function createImageStore() {
   }
 
   let imageName = $state(initialValue);
+  let imageLoading = $state(false);
 
   return {
     get imageName() {
       return imageName;
+    },
+
+    get imageLoading() {
+      return imageLoading;
     },
 
     updateImageName() {
@@ -37,6 +42,10 @@ function createImageStore() {
       if (browser) {
         localStorage.setItem(STORAGE_KEY, imageName);
       }
+    },
+
+    updateImageLoading(loadingState: boolean) {
+      imageLoading = loadingState;
     },
 
     resetImageName() {

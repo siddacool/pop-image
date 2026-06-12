@@ -15,6 +15,7 @@
     background="subtle"
     size="large"
     class="RefreshButton"
+    disabled={useImageStore.imageLoading}
   >
     <Icon icon="material-symbols:refresh-rounded" />
     Refresh
@@ -41,6 +42,7 @@
       width: 100%;
       text-align: center;
       margin-top: 0;
+      font-size: 1.1rem;
     }
   }
 </style>

@@ -1,6 +1,8 @@
 <script lang="ts">
   import { useImageStore } from '$lib/store/image.svelte';
   import CopyDetails from './CopyDetails.svelte';
+  import DynmaicImage from './DynmaicImage.svelte';
+  import LoadingAnimation from './LoadingAnimation.svelte';
 
   let imageRef = $state<HTMLDivElement | undefined>(undefined);
 
@@ -34,13 +36,33 @@
       observer.disconnect();
     };
   });
+
+  $effect(() => {
+    if (!imageUrl) return;
+
+    useImageStore.updateImageLoading(true);
+
+    const img = new Image();
+
+    img.onload = () => {
+      useImageStore.updateImageLoading(false);
+    };
+
+    img.onerror = () => {
+      useImageStore.updateImageLoading(false);
+    };
+
+    img.src = imageUrl;
+  });
 </script>
 
 <div class="Image" bind:this={imageRef}>
   {#if imageUrl}
-    <img src={imageUrl} alt="daily pic picsum" id="daily-image" />
-    <CopyDetails />
+    <DynmaicImage {imageUrl} />
+    <CopyDetails {imageUrl} />
   {/if}
+
+  <LoadingAnimation />
 </div>
 
 <style lang="scss">

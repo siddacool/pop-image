@@ -5,7 +5,9 @@
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
 
-  let imageUrl = $derived(`https://picsum.photos/seed/${useImageStore.imageName}/1000/667`);
+  type Props = { imageUrl: string };
+
+  const { imageUrl }: Props = $props();
 
   async function copyImageUrl() {
     try {
@@ -31,7 +33,14 @@
 </script>
 
 <div class="CopyDetails">
-  <Button aria-label="Copy Details" compact roundness="full" variant="text" onclick={copyImageUrl}>
+  <Button
+    aria-label="Copy Details"
+    compact
+    roundness="full"
+    variant="text"
+    onclick={copyImageUrl}
+    disabled={useImageStore.imageLoading}
+  >
     <Icon icon="material-symbols:content-copy-outline" />
   </Button>
 </div>
