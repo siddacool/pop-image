@@ -1,3 +1,3 @@
 # Pop image
 
-Get random image everyday
+Get random image everyday.
