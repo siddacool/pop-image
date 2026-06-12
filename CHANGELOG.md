@@ -1,5 +1,11 @@
 # pop-image
 
+## 2.1.2
+
+### Patch Changes
+
+- e0edebc: Node version upgrade
+
 ## 2.1.1
 
 ### Patch Changes
