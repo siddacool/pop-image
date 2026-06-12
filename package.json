@@ -35,7 +35,10 @@
   "dependencies": {
     "@changesets/cli": "^2.31.0",
     "@flightlesslabs/dodo-ui": "^0.36.8",
+    "@flightlesslabs/dodo-ui-bits": "^0.10.10",
+    "@flightlesslabs/time-utils": "^0.2.2",
     "@iconify-svelte/material-symbols": "^1.0.36",
-    "@iconify/svelte": "^5.2.1"
+    "@iconify/svelte": "^5.2.1",
+    "bits-ui": "^2.18.1"
   }
 }

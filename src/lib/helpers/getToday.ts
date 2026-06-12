@@ -1,35 +1,19 @@
+import { createDate } from '@flightlesslabs/time-utils';
+
 export function getToday() {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
+  const today = createDate().format('YYYY-MM-DD');
 
-  const formatted = `${yyyy}-${mm}-${dd}`;
-
-  return formatted;
+  return today;
 }
 
 export function getCurrentTime() {
-  const now = new Date();
+  const now = createDate().format('YYYY-MM-DD:HH:mm:ss');
 
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, '0');
-  const dd = String(now.getDate()).padStart(2, '0');
-
-  const HH = String(now.getHours()).padStart(2, '0');
-  const MM = String(now.getMinutes()).padStart(2, '0');
-  const ss = String(now.getSeconds()).padStart(2, '0');
-
-  return `${yyyy}-${mm}-${dd}:${HH}:${MM}:${ss}`;
+  return now;
 }
 
 export function getFormattedToday() {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
+  const today = createDate().format('DD/MM/YYYY');
 
-  const formatted = `${dd}/${mm}/${yyyy}`;
-
-  return formatted;
+  return today;
 }

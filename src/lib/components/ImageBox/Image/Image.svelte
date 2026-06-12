@@ -1,10 +1,12 @@
 <script lang="ts">
   import { useImageStore } from '$lib/store/image.svelte';
+  import CopyDetails from './CopyDetails.svelte';
 
   let imageRef = $state<HTMLDivElement | undefined>(undefined);
 
   let width = $state(0);
   let height = $state(0);
+
   let imageUrl = $derived(
     width && height
       ? `https://picsum.photos/seed/${useImageStore.imageName}/${width}/${height}`
@@ -36,7 +38,8 @@
 
 <div class="Image" bind:this={imageRef}>
   {#if imageUrl}
-    <img src={imageUrl} alt="daily pic picsum" />
+    <img src={imageUrl} alt="daily pic picsum" id="daily-image" />
+    <CopyDetails />
   {/if}
 </div>
 
@@ -50,5 +53,6 @@
     max-height: 667px;
     min-height: 400px;
     margin: 0 auto;
+    position: relative;
   }
 </style>

@@ -1,6 +1,6 @@
 <script>
   import { Button } from '@flightlesslabs/dodo-ui';
-  import Image from './Image.svelte';
+  import Image from './Image/Image.svelte';
   import { useImageStore } from '$lib/store/image.svelte';
   import { getFormattedToday } from '$lib/helpers/getToday';
   import Icon from '@iconify/svelte';
@@ -9,7 +9,13 @@
 <div class="ImageBox">
   <p>{getFormattedToday()}</p>
   <Image />
-  <Button onclick={useImageStore.updateImageName} variant="text" background="subtle" size="large">
+  <Button
+    onclick={useImageStore.updateImageName}
+    variant="text"
+    background="subtle"
+    size="large"
+    class="RefreshButton"
+  >
     <Icon icon="material-symbols:refresh-rounded" />
     Refresh
   </Button>
@@ -21,12 +27,12 @@
     flex-direction: column;
     align-items: center;
 
-    :global(button) {
+    :global(.RefreshButton) {
       margin-top: 32px;
       font-size: 1.1rem;
     }
 
-    :global(button svg) {
+    :global(.RefreshButton svg) {
       margin-right: 8px;
       font-size: 1.3rem;
     }
