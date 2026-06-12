@@ -7,6 +7,7 @@
 </script>
 
 <img
+  loading="lazy"
   src={imageUrl}
   alt="daily pic picsum"
   id="daily-image"

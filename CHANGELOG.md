@@ -1,5 +1,11 @@
 # pop-image
 
+## 2.1.3
+
+### Patch Changes
+
+- Image lazy load added and auto commit removed
+
 ## 2.1.2
 
 ### Patch Changes
