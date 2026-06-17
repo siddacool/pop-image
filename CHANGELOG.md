@@ -1,5 +1,11 @@
 # pop-image
 
+## 2.1.4
+
+### Patch Changes
+
+- Fix Created at date in image copy function
+
 ## 2.1.3
 
 ### Patch Changes
